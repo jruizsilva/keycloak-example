@@ -17,14 +17,14 @@ import java.util.List;
 @PreAuthorize("hasRole('admin_client_role')")
 @RequiredArgsConstructor
 public class KeycloakController {
-    private IKeycloakService keycloakService;
+    private final IKeycloakService keycloakService;
 
     @GetMapping
     public ResponseEntity<List<UserRepresentation>> findAllUsers() {
         return ResponseEntity.ok(keycloakService.findAllUsers());
     }
 
-    @GetMapping("search/{username}")
+    @GetMapping("/search/{username}")
     public ResponseEntity<List<UserRepresentation>> searchUserByUsername(@PathVariable String username) {
         return ResponseEntity.ok(keycloakService.searchUserByUsername(username));
     }
